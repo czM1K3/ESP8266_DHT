@@ -7,8 +7,8 @@
 #include <Adafruit_Sensor.h>
 #include "Configuration.h"
 
-const char* ssid = SSID;
-const char* password = PASSWORD;
+const char *ssid = SSID;
+const char *password = PASSWORD;
 
 ESP8266WebServer server(80);
 
@@ -16,7 +16,8 @@ DHT dht(DHT_PIN, DHT11);
 
 void sendData();
 
-void setup() {
+void setup()
+{
 #ifdef SERIAL_BAUD
   Serial.begin(SERIAL_BAUD);
 
@@ -41,9 +42,12 @@ void setup() {
 
   ArduinoOTA.onStart([]() {
     String type;
-    if (ArduinoOTA.getCommand() == U_FLASH) {
+    if (ArduinoOTA.getCommand() == U_FLASH)
+    {
       type = "sketch";
-    } else {
+    }
+    else
+    {
       type = "filesystem";
     }
 #ifdef SERIAL_BAUD
@@ -63,15 +67,24 @@ void setup() {
   ArduinoOTA.onError([](ota_error_t error) {
 #ifdef SERIAL_BAUD
     Serial.printf("Error[%u]: ", error);
-    if (error == OTA_AUTH_ERROR) {
+    if (error == OTA_AUTH_ERROR)
+    {
       Serial.println("Auth Failed");
-    } else if (error == OTA_BEGIN_ERROR) {
+    }
+    else if (error == OTA_BEGIN_ERROR)
+    {
       Serial.println("Begin Failed");
-    } else if (error == OTA_CONNECT_ERROR) {
+    }
+    else if (error == OTA_CONNECT_ERROR)
+    {
       Serial.println("Connect Failed");
-    } else if (error == OTA_RECEIVE_ERROR) {
+    }
+    else if (error == OTA_RECEIVE_ERROR)
+    {
       Serial.println("Receive Failed");
-    } else if (error == OTA_END_ERROR) {
+    }
+    else if (error == OTA_END_ERROR)
+    {
       Serial.println("End Failed");
     }
 #endif
@@ -79,12 +92,14 @@ void setup() {
   ArduinoOTA.begin();
 }
 
-void loop() {
+void loop()
+{
   server.handleClient();
   ArduinoOTA.handle();
 }
 
-void sendData() {
+void sendData()
+{
   StaticJsonDocument<200> doc;
   doc["temp"] = dht.readTemperature();
   doc["humidity"] = dht.readHumidity();
