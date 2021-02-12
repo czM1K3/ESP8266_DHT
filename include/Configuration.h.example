@@ -1,0 +1,15 @@
+#include <ESP8266WiFi.h>
+#include <DHT.h>
+
+
+//#define SERIAL_BAUD 9600
+
+#define SSID        "SSID"
+#define PASSWORD    "PASSWORD"
+
+const IPAddress SATIC_IP    (192,168,1,2);
+const IPAddress GATEWAY     (192,168,1,1);
+const IPAddress SUBNET      (255,255,255,0);
+
+#define DHT_PIN   0
+#define DHT_TYPE  DHT11
