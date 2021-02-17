@@ -100,6 +100,7 @@ void loop()
 
 void sendData()
 {
+  server.sendHeader("Access-Control-Allow-Origin", "*");
   StaticJsonDocument<200> doc;
   doc["temp"] = dht.readTemperature();
   doc["humidity"] = dht.readHumidity();
